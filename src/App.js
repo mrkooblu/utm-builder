@@ -6,6 +6,7 @@ import Layout from './components/Layout/Layout';
 import UTMForm from './components/Form/UTMForm';
 import ResultCard from './components/Results/ResultCard';
 import InfoSection from './components/common/InfoSection';
+import SemrushModule from './components/common/SemrushModule';
 import { saveUTMHistory, loadUTMHistory } from './utils/utmHelpers';
 import styled from 'styled-components';
 
@@ -55,6 +56,10 @@ const ResultsCount = styled.span`
 `;
 
 const InfoSectionWrapper = styled.div`
+  margin-top: ${({ theme }) => theme.spacing[8]};
+`;
+
+const SemrushModuleWrapper = styled.div`
   margin-top: ${({ theme }) => theme.spacing[8]};
 `;
 
@@ -147,6 +152,10 @@ function App() {
             </EmptyState>
           </ResultsSection>
         )}
+        
+        <SemrushModuleWrapper>
+          <SemrushModule />
+        </SemrushModuleWrapper>
         
         <InfoSectionWrapper>
           <InfoSection />

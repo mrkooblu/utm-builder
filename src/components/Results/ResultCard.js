@@ -112,6 +112,20 @@ const ButtonGroup = styled.div`
   align-items: center;
   flex-wrap: wrap;
   margin-top: ${({ theme }) => theme.spacing[4]};
+  
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: stretch;
+    
+    & > * {
+      width: 100%;
+      justify-content: center;
+    }
+    
+    & > * + * {
+      margin-top: ${({ theme }) => theme.spacing[2]};
+    }
+  }
 `;
 
 // Custom button with exact color specification
@@ -158,6 +172,12 @@ const TabContainer = styled.div`
   display: flex;
   margin-bottom: ${({ theme }) => theme.spacing[4]};
   border-bottom: 1px solid ${({ theme }) => theme.colors.gray[200]};
+  flex-wrap: wrap;
+  
+  @media (max-width: 480px) {
+    flex-direction: column;
+    border-bottom: none;
+  }
 `;
 
 const Tab = styled.button`
@@ -169,9 +189,19 @@ const Tab = styled.button`
   border-bottom: 2px solid ${({ active }) => active ? '#2763eb' : 'transparent'};
   cursor: pointer;
   transition: all 0.2s ease;
+  font-size: 18px;
   
   &:hover {
     color: #2763eb;
+  }
+  
+  @media (max-width: 480px) {
+    text-align: left;
+    padding: ${({ theme }) => `${theme.spacing[2]} ${theme.spacing[2]}`};
+    margin-bottom: ${({ theme }) => theme.spacing[1]};
+    border-left: 2px solid ${({ active }) => active ? '#2763eb' : 'transparent'};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.gray[200]};
+    font-size: 16px;
   }
 `;
 
@@ -197,6 +227,142 @@ const MetadataRow = styled.div`
   & > span {
     margin-right: ${({ theme }) => theme.spacing[2]};
   }
+`;
+
+const SemrushInsightPanel = styled.div`
+  padding: ${({ theme }) => theme.spacing[4]};
+  background-color: #f9f9fd;
+  border-radius: ${({ theme }) => theme.borderRadius.md};
+  border: 1px solid rgba(255, 100, 45, 0.2);
+  margin-top: ${({ theme }) => theme.spacing[4]};
+  
+  @media (max-width: 480px) {
+    padding: ${({ theme }) => theme.spacing[3]};
+  }
+`;
+
+const SemrushHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: ${({ theme }) => theme.spacing[3]};
+  
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+    
+    & > * + * {
+      margin-top: ${({ theme }) => theme.spacing[2]};
+    }
+  }
+`;
+
+const SemrushLogo = styled.img`
+  height: 24px;
+  margin-right: ${({ theme }) => theme.spacing[2]};
+`;
+
+const SemrushLogoTitle = styled.div`
+  display: flex;
+  align-items: center;
+  
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+`;
+
+const InsightTitle = styled.h4`
+  color: #333;
+  font-size: ${({ theme }) => theme.fontSizes.lg};
+  margin: 0;
+  
+  @media (max-width: 480px) {
+    margin-top: ${({ theme }) => theme.spacing[1]};
+    font-size: 22px;
+  }
+`;
+
+const InsightDescription = styled.p`
+  color: ${({ theme }) => theme.colors.gray[600]};
+  margin-bottom: ${({ theme }) => theme.spacing[3]};
+  
+  @media (max-width: 480px) {
+    font-size: ${({ theme }) => theme.fontSizes.sm};
+  }
+`;
+
+const InsightCTA = styled.a`
+  display: inline-block;
+  padding: ${({ theme }) => `${theme.spacing[2]} ${theme.spacing[4]}`};
+  background-color: #ff642d;
+  color: white;
+  border-radius: ${({ theme }) => theme.borderRadius.md};
+  text-decoration: none;
+  font-weight: ${({ theme }) => theme.fontWeights.medium};
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background-color: #e85a29;
+    transform: translateY(-1px);
+  }
+  
+  @media (max-width: 480px) {
+    display: block;
+    text-align: center;
+  }
+`;
+
+const InsightGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: ${({ theme }) => theme.spacing[3]};
+  margin-bottom: ${({ theme }) => theme.spacing[3]};
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const InsightCardTitle = styled.h5`
+  font-size: ${({ theme }) => theme.fontSizes.md};
+  color: #333;
+  margin-top: 0;
+  margin-bottom: ${({ theme }) => theme.spacing[2]};
+  transition: color 0.2s ease;
+`;
+
+// Update the InsightCard to be clickable with no underline
+const InsightCard = styled.a`
+  background-color: white;
+  padding: ${({ theme }) => theme.spacing[3]};
+  border-radius: ${({ theme }) => theme.borderRadius.md};
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    background-color: #fff4f0;
+    text-decoration: none;
+  }
+  
+  &:hover ${InsightCardTitle} {
+    color: #ff632b;
+  }
+  
+  @media (max-width: 480px) {
+    padding: ${({ theme }) => theme.spacing[2]};
+  }
+`;
+
+const InsightText = styled.p`
+  font-size: ${({ theme }) => theme.fontSizes.sm};
+  color: ${({ theme }) => theme.colors.gray[600]};
+  margin: 0;
 `;
 
 const ResultCard = ({ utmResult, onCopy, isCopied }) => {
@@ -276,6 +442,12 @@ const ResultCard = ({ utmResult, onCopy, isCopied }) => {
         >
           Parameter Breakdown
         </Tab>
+        <Tab 
+          active={activeView === 'insights'} 
+          onClick={() => setActiveView('insights')}
+        >
+          Campaign Insights
+        </Tab>
       </TabContainer>
       
       <MetadataRow>
@@ -317,6 +489,70 @@ const ResultCard = ({ utmResult, onCopy, isCopied }) => {
             </ParameterGrid>
           </ResultSection>
         </UrlBreakdown>
+      )}
+      
+      {activeView === 'insights' && (
+        <SemrushInsightPanel>
+          <SemrushHeader>
+            <SemrushLogoTitle>
+              <SemrushLogo src="/images/semrush-logo-black-font.png" alt="SEMrush Logo" />
+              <InsightTitle>Campaign Performance Insights</InsightTitle>
+            </SemrushLogoTitle>
+            <InsightCTA href="https://www.semrush.com/lp/sem/en/" target="_blank" rel="noopener noreferrer">
+              Try Semrush Free
+            </InsightCTA>
+          </SemrushHeader>
+          
+          <InsightDescription>
+            See the complete story behind your "{params['utm_campaign'] || 'marketing'}" campaign with SEMrush's suite of marketing tools.
+          </InsightDescription>
+          
+          <InsightGrid>
+            <InsightCard 
+              href="https://www.semrush.com/analytics/traffic/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <InsightCardTitle>Traffic Analytics</InsightCardTitle>
+              <InsightText>
+                Struggling with traffic drops? Discover why visitors leave and how to win them back.
+              </InsightText>
+            </InsightCard>
+            
+            <InsightCard 
+              href="https://www.semrush.com/analytics/keywordoverview/?db=us" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <InsightCardTitle>Keyword Research</InsightCardTitle>
+              <InsightText>
+                Stop guessing which keywords work. Get data-driven insights that deliver traffic.
+              </InsightText>
+            </InsightCard>
+            
+            <InsightCard 
+              href="https://www.semrush.com/analytics/overview/?searchType=domain" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <InsightCardTitle>Competitor Analysis</InsightCardTitle>
+              <InsightText>
+                See what's working for your competitors before investing in your next campaign.
+              </InsightText>
+            </InsightCard>
+            
+            <InsightCard 
+              href="https://www.semrush.com/content-marketing/get-started/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <InsightCardTitle>Content Optimization</InsightCardTitle>
+              <InsightText>
+                Create content that ranks higher and converts better with data-backed optimization.
+              </InsightText>
+            </InsightCard>
+          </InsightGrid>
+        </SemrushInsightPanel>
       )}
       
       <ButtonGroup>

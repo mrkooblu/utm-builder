@@ -50,6 +50,25 @@ const Table = styled.table`
   overflow: hidden;
 `;
 
+const TableContainer = styled.div`
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  &::-webkit-scrollbar {
+    height: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: ${({ theme }) => theme.background.secondary};
+    border-radius: 3px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.colors.gray[400]};
+    border-radius: 3px;
+  }
+`;
+
 const TableHead = styled.thead`
   background-color: ${({ theme }) => `${theme.colors.primary}10`};
 `;
@@ -72,12 +91,14 @@ const TableHeader = styled.th`
   text-align: left;
   font-weight: ${({ theme }) => theme.fontWeights.semibold};
   color: ${({ theme }) => theme.text.primary};
+  font-size: 16px;
 `;
 
 const TableCell = styled.td`
   padding: ${({ theme }) => theme.spacing[3]};
   vertical-align: top;
   color: ${({ theme }) => theme.text.secondary};
+  font-size: 16px;
 `;
 
 const ParameterTag = styled.span`
@@ -87,7 +108,7 @@ const ParameterTag = styled.span`
   padding: ${({ theme }) => `${theme.spacing[1]} ${theme.spacing[2]}`};
   border-radius: ${({ theme }) => theme.borderRadius.md};
   font-family: monospace;
-  font-size: ${({ theme }) => theme.fontSizes.sm};
+  font-size: 16px;
   margin-top: ${({ theme }) => theme.spacing[1]};
   font-weight: ${({ theme }) => theme.fontWeights.normal};
   box-shadow: 0 2px 4px ${({ color }) => `${color}40` || 'rgba(0, 0, 0, 0.1)'};
@@ -100,7 +121,7 @@ const RequiredTag = styled.span`
   color: white;
   padding: ${({ theme }) => `${theme.spacing[1]} ${theme.spacing[2]}`};
   border-radius: ${({ theme }) => theme.borderRadius.full};
-  font-size: ${({ theme }) => theme.fontSizes.xs};
+  font-size: 16px;
   font-weight: ${({ theme }) => theme.fontWeights.semibold};
   text-transform: uppercase;
 `;
@@ -112,7 +133,7 @@ const ExampleTag = styled.span`
   padding: ${({ theme }) => theme.spacing[1]} ${({ theme }) => theme.spacing[2]};
   border-radius: ${({ theme }) => theme.borderRadius.md};
   font-family: monospace;
-  font-size: ${({ theme }) => theme.fontSizes.sm};
+  font-size: 16px;
 `;
 
 const InfoIcon = () => (
@@ -186,37 +207,39 @@ const InfoSection = () => {
         <InfoDescription>
           The following table gives a detailed explanation and example of each of the campaign parameters:
         </InfoDescription>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableHeader>Parameter</TableHeader>
-              <TableHeader>Required</TableHeader>
-              <TableHeader>Example</TableHeader>
-              <TableHeader>Description</TableHeader>
-            </TableRow>
-          </TableHead>
-          <tbody>
-            {parameterData.map((param, index) => (
-              <TableRow key={index}>
-                <TableCell>
-                  {param.name}
-                  <div>
-                    <ParameterTag color={param.color}>{param.tag}</ParameterTag>
-                  </div>
-                </TableCell>
-                <TableCell>
-                  <RequiredTag isRequired={param.required === 'Yes'}>
-                    {param.required}
-                  </RequiredTag>
-                </TableCell>
-                <TableCell>
-                  <ExampleTag>{param.example}</ExampleTag>
-                </TableCell>
-                <TableCell>{param.description}</TableCell>
+        <TableContainer>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableHeader>Parameter</TableHeader>
+                <TableHeader>Required</TableHeader>
+                <TableHeader>Example</TableHeader>
+                <TableHeader>Description</TableHeader>
               </TableRow>
-            ))}
-          </tbody>
-        </Table>
+            </TableHead>
+            <tbody>
+              {parameterData.map((param, index) => (
+                <TableRow key={index}>
+                  <TableCell>
+                    {param.name}
+                    <div>
+                      <ParameterTag color={param.color}>{param.tag}</ParameterTag>
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <RequiredTag isRequired={param.required === 'Yes'}>
+                      {param.required}
+                    </RequiredTag>
+                  </TableCell>
+                  <TableCell>
+                    <ExampleTag>{param.example}</ExampleTag>
+                  </TableCell>
+                  <TableCell>{param.description}</TableCell>
+                </TableRow>
+              ))}
+            </tbody>
+          </Table>
+        </TableContainer>
       </InfoContent>
     </InfoContainer>
   );

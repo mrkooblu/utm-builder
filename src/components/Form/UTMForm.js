@@ -468,12 +468,8 @@ const UTMForm = ({ onSubmit, onReset }) => {
                 error={touchedFields.campaignSource && errors.campaignSource}
                 placeholder="google"
                 list="sourceOptions"
+                options={commonSources}
               />
-              <datalist id="sourceOptions">
-                {commonSources.map(source => (
-                  <option key={source} value={source} />
-                ))}
-              </datalist>
               
               <InputField
                 label="Campaign Medium"
@@ -486,12 +482,8 @@ const UTMForm = ({ onSubmit, onReset }) => {
                 error={touchedFields.campaignMedium && errors.campaignMedium}
                 placeholder="cpc"
                 list="mediumOptions"
+                options={commonMediums}
               />
-              <datalist id="mediumOptions">
-                {commonMediums.map(medium => (
-                  <option key={medium} value={medium} />
-                ))}
-              </datalist>
               
               <InputField
                 label="Campaign Name"

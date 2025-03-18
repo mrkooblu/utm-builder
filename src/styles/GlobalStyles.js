@@ -78,6 +78,19 @@ const GlobalStyles = createGlobalStyle`
     background-color: ${props => props.theme.colors.primary};
     color: white;
   }
+  
+  /* Custom dropdown styling - ensure proper z-index and positioning */
+  .dropdown-container {
+    position: relative;
+  }
+  
+  .dropdown-options {
+    position: absolute;
+    z-index: 1000;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
 `;
 
 export default GlobalStyles; 
