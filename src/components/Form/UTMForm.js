@@ -314,8 +314,6 @@ const UTMForm = ({ onSubmit, onReset }) => {
   const [errors, setErrors] = useState({});
   const [urlPreview, setUrlPreview] = useState('');
   const [touchedFields, setTouchedFields] = useState({});
-  const [sourceOptions, setSourceOptions] = useState(commonSources);
-  const [mediumOptions, setMediumOptions] = useState(commonMediums);
   const [showErrors, setShowErrors] = useState(false);
   
   // Validate form as user types
@@ -339,19 +337,6 @@ const UTMForm = ({ onSubmit, onReset }) => {
       ...touchedFields,
       [name]: true
     });
-    
-    // Filter suggestions based on input
-    if (name === 'campaignSource') {
-      setSourceOptions(commonSources.filter(source => 
-        source.toLowerCase().includes(value.toLowerCase())
-      ));
-    }
-    
-    if (name === 'campaignMedium') {
-      setMediumOptions(commonMediums.filter(medium => 
-        medium.toLowerCase().includes(value.toLowerCase())
-      ));
-    }
     
     // Generate preview URL as user types
     const updatedFormData = {
