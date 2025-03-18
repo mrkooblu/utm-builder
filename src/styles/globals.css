@@ -1,0 +1,53 @@
+/* This file is intentionally empty as we're using styled-components for styling */
+/* Any global CSS that can't be handled by styled-components would go here */
+
+/* Global styles for the application */
+
+/* Datalist dropdown styling */
+datalist {
+  position: absolute;
+  max-height: 20em;
+  border: 1px solid #ccc;
+  border-radius: 0.5em;
+  background-color: white;
+  box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.1);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+datalist option {
+  font-size: 0.9em;
+  padding: 0.6em 1em;
+  background-color: white;
+  color: #333;
+  cursor: pointer;
+}
+
+datalist option:hover, datalist option:focus {
+  background-color: #f0f5ff;
+  color: #2763eb;
+}
+
+/* Firefox specific styling */
+@-moz-document url-prefix() {
+  input::-moz-list-box {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 0.5em;
+    box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Webkit browsers */
+input::-webkit-calendar-picker-indicator {
+  opacity: 0.6;
+}
+
+/* Microsoft Edge and IE */
+select::-ms-expand {
+  display: none;
+}
+
+input:-ms-input-placeholder {
+  color: #888;
+} 
