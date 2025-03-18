@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import InputField from './InputField';
-import Button from '../common/Button';
+// Button is not used in this file
 import { validateForm, generateUTMUrl } from '../../utils/utmHelpers';
 
 // Form wrapper to match the SEO ROI Calculator style
@@ -254,7 +254,8 @@ const initialFormState = {
   campaignContent: '',
 };
 
-// Add a new styled select element
+// These styled components aren't being used, so commenting them out
+/* 
 const StyledSelect = styled.select`
   width: 100%;
   padding: ${({ theme }) => theme.spacing[3]};
@@ -306,6 +307,7 @@ const ErrorSelectText = styled.p`
   margin-top: ${({ theme }) => theme.spacing[1]};
   margin-bottom: ${({ theme }) => theme.spacing[0]};
 `;
+*/
 
 const UTMForm = ({ onSubmit, onReset }) => {
   const [formData, setFormData] = useState(initialFormState);

@@ -240,7 +240,7 @@ const ResultCard = ({ utmResult, onCopy, isCopied }) => {
       // Note: This will only work if CORS is enabled on the target server
       // For a production app, you might need a proxy server
       try {
-        const response = await fetch(utmResult.utmUrl, { 
+        await fetch(utmResult.utmUrl, { 
           method: 'HEAD',
           mode: 'no-cors' // This prevents CORS errors but also means we can't check status
         });
